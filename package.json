@@ -1,0 +1,15 @@
+{
+  "name": "react-form-builder",
+  "version": "1.0.0",
+  "description": "A form builder for React, inspired by Rails.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "form",
+    "builder"
+  ],
+  "author": "Nipun Paradkar",
+  "license": "ISC"
+}
