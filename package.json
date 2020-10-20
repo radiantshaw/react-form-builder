@@ -11,5 +11,9 @@
     "builder"
   ],
   "author": "Nipun Paradkar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^26.6.0"
+  }
 }
