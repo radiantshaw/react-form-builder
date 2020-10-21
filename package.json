@@ -4,6 +4,7 @@
   "description": "A form builder for React, inspired by Rails.",
   "main": "index.js",
   "scripts": {
+    "test": "jest --watchAll",
     "build": "./node_modules/.bin/babel src --out-dir dist"
   },
   "keywords": [
