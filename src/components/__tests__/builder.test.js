@@ -25,6 +25,16 @@ describe("builder.form()", function() {
 
     expect(container.children[0].tagName).toEqual("FORM");
   });
+
+  it("forwards the ref", function() {
+    const testRef = React.createRef(null);
+
+    act(function() {
+      render(<builder.form ref={testRef}></builder.form>, container);
+    });
+
+    expect(container.children[0]).toEqual(testRef.current);
+  });
 });
 
 describe("builder.input()", function() {
@@ -34,6 +44,16 @@ describe("builder.input()", function() {
     });
 
     expect(container.children[0].tagName).toEqual("INPUT");
+  });
+
+  it("forwards the ref", function() {
+    const testRef = React.createRef(null);
+
+    act(function() {
+      render(<builder.input ref={testRef} />, container);
+    });
+
+    expect(container.children[0]).toEqual(testRef.current);
   });
 });
 
@@ -45,6 +65,16 @@ describe("builder.select()", function() {
 
     expect(container.children[0].tagName).toEqual("SELECT");
   });
+
+  it("forwards the ref", function() {
+    const testRef = React.createRef(null);
+
+    act(function() {
+      render(<builder.select ref={testRef}></builder.select>, container);
+    });
+
+    expect(container.children[0]).toEqual(testRef.current);
+  });
 });
 
 describe("builder.textarea()", function() {
@@ -54,5 +84,15 @@ describe("builder.textarea()", function() {
     });
 
     expect(container.children[0].tagName).toEqual("TEXTAREA");
+  });
+
+  it("forwards the ref", function() {
+    const testRef = React.createRef(null);
+
+    act(function() {
+      render(<builder.textarea ref={testRef} />, container);
+    });
+
+    expect(container.children[0]).toEqual(testRef.current);
   });
 });

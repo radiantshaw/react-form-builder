@@ -1,29 +1,29 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 let builder = {};
 
-builder.form = function() {
+builder.form = forwardRef(function(props, ref) {
   return (
-    <form></form>
+    <form ref={ref}></form>
   );
-}
+});
 
-builder.input = function() {
+builder.input = forwardRef(function(props, ref) {
   return (
-    <input />
+    <input ref={ref} />
   );
-}
+});
 
-builder.select = function() {
+builder.select = forwardRef(function(props, ref) {
   return (
-    <select></select>
+    <select ref={ref}></select>
   );
-}
+});
 
-builder.textarea = function() {
+builder.textarea = forwardRef(function(props, ref) {
   return (
-    <textarea />
+    <textarea ref={ref} />
   );
-}
+});
 
 export default builder;
