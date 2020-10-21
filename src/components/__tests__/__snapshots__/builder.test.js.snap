@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`builder.form() renders the children between the form tag 1`] = `
+"<form>
+  <div>Test immediate children</div>
+  <div><span>Test inner children</span></div>
+</form>"
+`;
+
+exports[`builder.select() renders the children between the form tag 1`] = `
+"<select>
+  <option value=\\"test-value-one\\">Test option one</option>
+  <option value=\\"test-value-two\\">Test option two</option>
+  <option value=\\"test-value-any\\">Test option any</option>
+</select>"
+`;

@@ -1,6 +1,7 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
+import pretty from "pretty";
 
 import builder from "../builder";
 
@@ -34,6 +35,21 @@ describe("builder.form()", function() {
     });
 
     expect(container.children[0]).toEqual(testRef.current);
+  });
+
+  it("renders the children between the form tag", function() {
+    act(function() {
+      render(
+        <builder.form>
+          <div>Test immediate children</div>
+          <div>
+            <span>Test inner children</span>
+          </div>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 });
 
@@ -74,6 +90,20 @@ describe("builder.select()", function() {
     });
 
     expect(container.children[0]).toEqual(testRef.current);
+  });
+
+  it("renders the children between the form tag", function() {
+    act(function() {
+      render(
+        <builder.select>
+          <option value="test-value-one">Test option one</option>
+          <option value="test-value-two">Test option two</option>
+          <option value="test-value-any">Test option any</option>
+        </builder.select>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 });
 

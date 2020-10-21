@@ -4,7 +4,9 @@ let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
   return (
-    <form ref={ref}></form>
+    <form ref={ref}>
+      { props.children }
+    </form>
   );
 });
 
@@ -16,7 +18,9 @@ builder.input = forwardRef(function(props, ref) {
 
 builder.select = forwardRef(function(props, ref) {
   return (
-    <select ref={ref}></select>
+    <select ref={ref}>
+      { props.children }
+    </select>
   );
 });
 
