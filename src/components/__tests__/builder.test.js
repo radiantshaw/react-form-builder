@@ -126,3 +126,23 @@ describe("builder.textarea()", function() {
     expect(container.children[0]).toEqual(testRef.current);
   });
 });
+
+describe("form builder", function() {
+  it("sets derived name for input element", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <builder.input name="input" />
+          <builder.textarea name="textarea" />
+          <builder.select name="select">
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+});

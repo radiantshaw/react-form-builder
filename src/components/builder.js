@@ -1,24 +1,41 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useContext } from "react";
+
+import deriveName from "../utils/derive-name";
+
+const FormBuilderContext = React.createContext();
+
+function useDerivedName(name) {
+  if (!name) return null;
+
+  return deriveName([
+    useContext(FormBuilderContext), name
+  ]);
+}
 
 let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
   return (
     <form ref={ref}>
-      { props.children }
+      <FormBuilderContext.Provider value={[props.name]}>
+        { props.children }
+      </FormBuilderContext.Provider>
     </form>
   );
 });
 
 builder.input = forwardRef(function(props, ref) {
   return (
-    <input ref={ref} />
+    <input ref={ref}
+      name={useDerivedName(props.name)}
+    />
   );
 });
 
 builder.select = forwardRef(function(props, ref) {
   return (
-    <select ref={ref}>
+    <select ref={ref}
+      name={useDerivedName(props.name)}>
       { props.children }
     </select>
   );
@@ -26,7 +43,9 @@ builder.select = forwardRef(function(props, ref) {
 
 builder.textarea = forwardRef(function(props, ref) {
   return (
-    <textarea ref={ref} />
+    <textarea ref={ref}
+      name={useDerivedName(props.name)}
+    />
   );
 });
 

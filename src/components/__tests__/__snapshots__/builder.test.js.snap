@@ -14,3 +14,11 @@ exports[`builder.select() renders the children between the form tag 1`] = `
   <option value=\\"test-value-any\\">Test option any</option>
 </select>"
 `;
+
+exports[`form builder sets derived name for input element 1`] = `
+"<form><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
