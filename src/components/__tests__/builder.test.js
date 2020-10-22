@@ -19,7 +19,7 @@ afterEach(function() {
 });
 
 describe("builder.form()", function() {
-  it("renders a form tag", function() {
+  it("renders a form element", function() {
     act(function() {
       render(<builder.form></builder.form>, container);
     });
@@ -37,7 +37,7 @@ describe("builder.form()", function() {
     expect(container.children[0]).toEqual(testRef.current);
   });
 
-  it("renders the children between the form tag", function() {
+  it("renders the children between the opening and closing form tags", function() {
     act(function() {
       render(
         <builder.form>
@@ -54,7 +54,7 @@ describe("builder.form()", function() {
 });
 
 describe("builder.input()", function() {
-  it("renders an input tag", function() {
+  it("renders an input element", function() {
     act(function() {
       render(<builder.input />, container);
     });
@@ -74,7 +74,7 @@ describe("builder.input()", function() {
 });
 
 describe("builder.select()", function() {
-  it("renders a select tag", function() {
+  it("renders a select element", function() {
     act(function() {
       render(<builder.select></builder.select>, container);
     });
@@ -92,7 +92,7 @@ describe("builder.select()", function() {
     expect(container.children[0]).toEqual(testRef.current);
   });
 
-  it("renders the children between the form tag", function() {
+  it("renders the children between the opening and closing select tags", function() {
     act(function() {
       render(
         <builder.select>
@@ -108,7 +108,7 @@ describe("builder.select()", function() {
 });
 
 describe("builder.textarea()", function() {
-  it("renders a textarea tag", function() {
+  it("renders a textarea element", function() {
     act(function() {
       render(<builder.textarea />, container);
     });
@@ -128,7 +128,7 @@ describe("builder.textarea()", function() {
 });
 
 describe("builder.fields()", function() {
-  it("renders nothing", function() {
+  it("renders no element", function() {
     act(function() {
       render(<builder.fields></builder.fields>, container);
     });
@@ -153,7 +153,7 @@ describe("builder.fields()", function() {
 });
 
 describe("form builder", function() {
-  it("sets derived name for input element", function() {
+  it("sets the derived name for form inputs", function() {
     act(function() {
       render(
         <builder.form name="test">
@@ -171,7 +171,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it("sets derived name for input element one level deep", function() {
+  it("sets the derived name for form inputs nested one level deep", function() {
     act(function() {
       render(
         <builder.form name="test">
@@ -191,7 +191,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it("sets derived name for input element several levels deep", function() {
+  it("sets the derived name for form inputs nested several levels deep", function() {
     act(function() {
       render(
         <builder.form name="test">
@@ -215,7 +215,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it("sets derived name for input elements using fields builder", function() {
+  it("sets the derived name for form inputs using fields builder", function() {
     act(function() {
       render(
         <builder.form name="test">
@@ -235,7 +235,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it("sets derived name for input elements using proper context", function() {
+  it("sets the derived name for form inputs using proper nested context", function() {
     act(function() {
       render(
         <builder.form name="test">
@@ -269,7 +269,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it("sets derived name for input elements with nested fields", function() {
+  it("sets the derived name for form inputs with nested fields", function() {
     act(function() {
       render(
         <builder.form name="test">
