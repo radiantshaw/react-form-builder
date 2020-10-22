@@ -27,7 +27,17 @@ builder.form = forwardRef(function(props, ref) {
 builder.fields = function(props) {
   if (props.name) {
     var formContext =
-      props.formName ? [props.formName] : [...useContext(FormBuilderContext)];
+      props.formName ? [props.formName] : useContext(FormBuilderContext);
+
+    if (typeof formContext == "undefined") {
+      throw new Error(
+        "No form context specified. Either, wrap your `builder.fields' call inside " +
+        "a `builder.form' call and pass the `name' prop to the `builder.form' call, " +
+        "or if you don't want to render the `form' element for some reason (maybe " +
+        "the `form' was already rendered from the server), then simply pass the " +
+        "`formName' prop to the `builder.fields' call by itself."
+      );
+    }
   } else {
     return props.children || null;
   }
