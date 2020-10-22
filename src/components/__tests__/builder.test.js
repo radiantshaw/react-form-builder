@@ -145,4 +145,48 @@ describe("form builder", function() {
 
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("sets derived name for input element one level deep", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <div>
+            <builder.input name="input" />
+            <builder.textarea name="textarea" />
+            <builder.select name="select">
+              <option value="test-value-one">Test option one</option>
+              <option value="test-value-two">Test option two</option>
+              <option value="test-value-any">Test option any</option>
+            </builder.select>
+          </div>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("sets derived name for input element several levels deep", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <div>
+            <div>
+              <div>
+                <builder.input name="input" />
+                <builder.textarea name="textarea" />
+                <builder.select name="select">
+                  <option value="test-value-one">Test option one</option>
+                  <option value="test-value-two">Test option two</option>
+                  <option value="test-value-any">Test option any</option>
+                </builder.select>
+              </div>
+            </div>
+          </div>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
 });

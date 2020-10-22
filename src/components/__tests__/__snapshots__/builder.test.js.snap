@@ -22,3 +22,27 @@ exports[`form builder sets derived name for input element 1`] = `
     <option value=\\"test-value-any\\">Test option any</option>
   </select></form>"
 `;
+
+exports[`form builder sets derived name for input element one level deep 1`] = `
+"<form>
+  <div><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+      <option value=\\"test-value-one\\">Test option one</option>
+      <option value=\\"test-value-two\\">Test option two</option>
+      <option value=\\"test-value-any\\">Test option any</option>
+    </select></div>
+</form>"
+`;
+
+exports[`form builder sets derived name for input element several levels deep 1`] = `
+"<form>
+  <div>
+    <div>
+      <div><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+          <option value=\\"test-value-one\\">Test option one</option>
+          <option value=\\"test-value-two\\">Test option two</option>
+          <option value=\\"test-value-any\\">Test option any</option>
+        </select></div>
+    </div>
+  </div>
+</form>"
+`;
