@@ -8,7 +8,7 @@ function useDerivedName(name) {
   if (!name) return null;
 
   return deriveName([
-    useContext(FormBuilderContext), name
+    ...useContext(FormBuilderContext), name
   ]);
 }
 
@@ -23,6 +23,17 @@ builder.form = forwardRef(function(props, ref) {
     </form>
   );
 });
+
+builder.fields = function(props) {
+  if (!props.name) return props.children || null;
+
+  return (
+    <FormBuilderContext.Provider
+      value={[...useContext(FormBuilderContext), props.name]}>
+      { props.children }
+    </FormBuilderContext.Provider>
+  );
+}
 
 builder.input = forwardRef(function(props, ref) {
   return (

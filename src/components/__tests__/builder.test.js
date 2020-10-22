@@ -127,6 +127,31 @@ describe("builder.textarea()", function() {
   });
 });
 
+describe("builder.fields()", function() {
+  it("renders nothing", function() {
+    act(function() {
+      render(<builder.fields></builder.fields>, container);
+    });
+
+    expect(container.children.length).toEqual(0);
+  });
+
+  it("renders the children directly", function() {
+    act(function() {
+      render(
+        <builder.fields>
+          <div>Test immediate children</div>
+          <div>
+            <span>Test inner children</span>
+          </div>
+        </builder.fields>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+});
+
 describe("form builder", function() {
   it("sets derived name for input element", function() {
     act(function() {
@@ -183,6 +208,82 @@ describe("form builder", function() {
               </div>
             </div>
           </div>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("sets derived name for input elements using fields builder", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <builder.fields name="fields">
+            <builder.input name="input" />
+            <builder.textarea name="textarea" />
+            <builder.select name="select">
+              <option value="test-value-one">Test option one</option>
+              <option value="test-value-two">Test option two</option>
+              <option value="test-value-any">Test option any</option>
+            </builder.select>
+          </builder.fields>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("sets derived name for input elements using proper context", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <builder.input name="pre-outer-input" />
+          <builder.textarea name="pre-outer-textarea" />
+          <builder.select name="pre-outer-select">
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+          <builder.fields name="fields">
+            <builder.input name="inner-input" />
+            <builder.textarea name="inner-textarea" />
+            <builder.select name="inner-select">
+              <option value="test-value-one">Test option one</option>
+              <option value="test-value-two">Test option two</option>
+              <option value="test-value-any">Test option any</option>
+            </builder.select>
+          </builder.fields>
+          <builder.input name="post-outer-input" />
+          <builder.textarea name="post-outer-textarea" />
+          <builder.select name="post-outer-select">
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("sets derived name for input elements with nested fields", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <builder.fields name="outer-fields">
+            <builder.fields name="inner-fields">
+              <builder.input name="input" />
+              <builder.textarea name="textarea" />
+              <builder.select name="select">
+                <option value="test-value-one">Test option one</option>
+                <option value="test-value-two">Test option two</option>
+                <option value="test-value-any">Test option any</option>
+              </builder.select>
+            </builder.fields>
+          </builder.fields>
         </builder.form>, container
       );
     });
