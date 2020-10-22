@@ -25,11 +25,16 @@ builder.form = forwardRef(function(props, ref) {
 });
 
 builder.fields = function(props) {
-  if (!props.name) return props.children || null;
+  if (props.name) {
+    var formContext =
+      props.formName ? [props.formName] : [...useContext(FormBuilderContext)];
+  } else {
+    return props.children || null;
+  }
 
   return (
     <FormBuilderContext.Provider
-      value={[...useContext(FormBuilderContext), props.name]}>
+      value={[...formContext, props.name]}>
       { props.children }
     </FormBuilderContext.Provider>
   );

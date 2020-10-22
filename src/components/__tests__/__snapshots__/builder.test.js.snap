@@ -20,6 +20,14 @@ exports[`builder.select() renders the children between the opening and closing s
 </select>"
 `;
 
+exports[`form builder can set the derived name for form inputs without a root form 1`] = `
+"<input name=\\"test[fields][input]\\"><textarea name=\\"test[fields][textarea]\\"></textarea><select name=\\"test[fields][select]\\">
+  <option value=\\"test-value-one\\">Test option one</option>
+  <option value=\\"test-value-two\\">Test option two</option>
+  <option value=\\"test-value-any\\">Test option any</option>
+</select>"
+`;
+
 exports[`form builder sets the derived name for form inputs 1`] = `
 "<form><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
     <option value=\\"test-value-one\\">Test option one</option>

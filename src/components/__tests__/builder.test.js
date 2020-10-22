@@ -290,4 +290,22 @@ describe("form builder", function() {
 
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("can set the derived name for form inputs without a root form", function() {
+    act(function() {
+      render(
+        <builder.fields name="fields" formName="test">
+          <builder.input name="input" />
+          <builder.textarea name="textarea" />
+          <builder.select name="select">
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+        </builder.fields>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
 });
