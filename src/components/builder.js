@@ -16,7 +16,7 @@ let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
   return (
-    <form ref={ref}>
+    <form ref={ref} { ...props } name={null}>
       <FormBuilderContext.Provider value={[props.name]}>
         { props.children }
       </FormBuilderContext.Provider>
@@ -52,7 +52,7 @@ builder.fields = function(props) {
 
 builder.input = forwardRef(function(props, ref) {
   return (
-    <input ref={ref}
+    <input ref={ref} { ...props }
       name={useDerivedName(props.name)}
     />
   );
@@ -60,7 +60,7 @@ builder.input = forwardRef(function(props, ref) {
 
 builder.select = forwardRef(function(props, ref) {
   return (
-    <select ref={ref}
+    <select ref={ref} { ...props }
       name={useDerivedName(props.name)}>
       { props.children }
     </select>
@@ -69,7 +69,7 @@ builder.select = forwardRef(function(props, ref) {
 
 builder.textarea = forwardRef(function(props, ref) {
   return (
-    <textarea ref={ref}
+    <textarea ref={ref} { ...props }
       name={useDerivedName(props.name)}
     />
   );

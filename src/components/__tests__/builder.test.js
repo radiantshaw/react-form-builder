@@ -37,6 +37,59 @@ describe("builder.form()", function() {
     expect(container.children[0]).toEqual(testRef.current);
   });
 
+  it("forwards the HTML attributes", function() {
+    const innerAttributes = {
+      accessKey: 't',
+      autoCapitalize: "characters",
+      "data-test": "Test data",
+      "data-another-test": "Another test data",
+      dir: "rtl",
+      draggable: "false",
+      id: "test-id",
+      lang: "en-GB",
+      spellCheck: "false",
+      tabIndex: '0',
+      title: "Test title",
+      action: "/test-action",
+      encType: "multipart/form-data",
+      method: "post",
+      target: "_blank"
+    };
+
+    const correspondingDOMPropertyAttributes = {
+      className: "test-class another-test-class",
+      hidden: true,
+      acceptCharset: "utf-8",
+      noValidate: false,
+    };
+
+    const processedAttributes = {
+      style: { display: "inline" }
+    };
+
+    act(function() {
+      render(
+        <builder.form
+          { ...innerAttributes }
+          { ...correspondingDOMPropertyAttributes }
+          style={processedAttributes.style}>
+        </builder.form>, container
+      );
+    });
+
+    Object.keys(innerAttributes).forEach(function(key) {
+      expect(container.children[0].getAttribute(key))
+        .toEqual(innerAttributes[key]);
+    });
+
+    Object.keys(correspondingDOMPropertyAttributes).forEach(function(key) {
+      expect(container.children[0][key])
+        .toEqual(correspondingDOMPropertyAttributes[key]);
+    });
+
+    expect(container.children[0].getAttribute("style")).toEqual("display: inline;");
+  });
+
   it("renders the children between the opening and closing form tags", function() {
     act(function() {
       render(
@@ -71,6 +124,60 @@ describe("builder.input()", function() {
 
     expect(container.children[0]).toEqual(testRef.current);
   });
+
+  it("forwards the HTML attributes", function() {
+    const innerAttributes = {
+      accessKey: 't',
+      autoCapitalize: "characters",
+      "data-test": "Test data",
+      "data-another-test": "Another test data",
+      dir: "rtl",
+      draggable: "false",
+      id: "test-id",
+      lang: "en-GB",
+      spellCheck: "false",
+      tabIndex: '0',
+      title: "Test title",
+      autoComplete: "on",
+      form: "test-form",
+      list: "test-list",
+      type: "hidden",
+      value: "Test value"
+    };
+
+    const correspondingDOMPropertyAttributes = {
+      className: "test-class another-test-class",
+      disabled: true,
+      hidden: true,
+      required: true
+    };
+
+    const processedAttributes = {
+      style: { display: "inline" }
+    };
+
+    act(function() {
+      render(
+        <builder.input
+          { ...innerAttributes }
+          { ...correspondingDOMPropertyAttributes }
+          style={processedAttributes.style}
+        />, container
+      );
+    });
+
+    Object.keys(innerAttributes).forEach(function(key) {
+      expect(container.children[0].getAttribute(key))
+        .toEqual(innerAttributes[key]);
+    });
+
+    Object.keys(correspondingDOMPropertyAttributes).forEach(function(key) {
+      expect(container.children[0][key])
+        .toEqual(correspondingDOMPropertyAttributes[key]);
+    });
+
+    expect(container.children[0].getAttribute("style")).toEqual("display: inline;");
+  });
 });
 
 describe("builder.select()", function() {
@@ -90,6 +197,59 @@ describe("builder.select()", function() {
     });
 
     expect(container.children[0]).toEqual(testRef.current);
+  });
+
+  it("forwards the HTML attributes", function() {
+    const innerAttributes = {
+      accessKey: 't',
+      autoCapitalize: "characters",
+      "data-test": "Test data",
+      "data-another-test": "Another test data",
+      dir: "rtl",
+      draggable: "false",
+      id: "test-id",
+      lang: "en-GB",
+      spellCheck: "false",
+      tabIndex: '0',
+      title: "Test title",
+      autoComplete: "on",
+      form: "test-form",
+      size: '2'
+    };
+
+    const correspondingDOMPropertyAttributes = {
+      className: "test-class another-test-class",
+      disabled: true,
+      multiple: true,
+      hidden: true,
+      required: true
+    };
+
+    const processedAttributes = {
+      style: { display: "inline" }
+    };
+
+    act(function() {
+      render(
+        <builder.select
+          { ...innerAttributes }
+          { ...correspondingDOMPropertyAttributes }
+          style={processedAttributes.style}>
+        </builder.select>, container
+      );
+    });
+
+    Object.keys(innerAttributes).forEach(function(key) {
+      expect(container.children[0].getAttribute(key))
+        .toEqual(innerAttributes[key]);
+    });
+
+    Object.keys(correspondingDOMPropertyAttributes).forEach(function(key) {
+      expect(container.children[0][key])
+        .toEqual(correspondingDOMPropertyAttributes[key]);
+    });
+
+    expect(container.children[0].getAttribute("style")).toEqual("display: inline;");
   });
 
   it("renders the children between the opening and closing select tags", function() {
@@ -124,6 +284,65 @@ describe("builder.textarea()", function() {
     });
 
     expect(container.children[0]).toEqual(testRef.current);
+  });
+
+  it("forwards the HTML attributes", function() {
+    const innerAttributes = {
+      accessKey: 't',
+      autoCapitalize: "characters",
+      "data-test": "Test data",
+      "data-another-test": "Another test data",
+      dir: "rtl",
+      draggable: "false",
+      id: "test-id",
+      lang: "en-GB",
+      spellCheck: "false",
+      tabIndex: '0',
+      title: "Test title",
+      autoComplete: "on",
+      cols: "20",
+      form: "test-form",
+      maxLength: "42",
+      minLength: '5',
+      placeholder: "Text placeholder",
+      rows: '7',
+      wrap: "soft"
+    };
+
+    const correspondingDOMPropertyAttributes = {
+      className: "test-class another-test-class",
+      disabled: true,
+      multiple: true,
+      hidden: true,
+      readOnly: true,
+      required: true
+    };
+
+    const processedAttributes = {
+      style: { display: "inline" }
+    };
+
+    act(function() {
+      render(
+        <builder.textarea
+          { ...innerAttributes }
+          { ...correspondingDOMPropertyAttributes }
+          style={processedAttributes.style}
+        />, container
+      );
+    });
+
+    Object.keys(innerAttributes).forEach(function(key) {
+      expect(container.children[0].getAttribute(key))
+        .toEqual(innerAttributes[key]);
+    });
+
+    Object.keys(correspondingDOMPropertyAttributes).forEach(function(key) {
+      expect(container.children[0][key])
+        .toEqual(correspondingDOMPropertyAttributes[key]);
+    });
+
+    expect(container.children[0].getAttribute("style")).toEqual("display: inline;");
   });
 });
 
