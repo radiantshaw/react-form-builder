@@ -527,4 +527,60 @@ describe("form builder", function() {
 
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("can derive name for a collection as well for the root form", function() {
+    act(function() {
+      render(
+        <builder.form name="test" collection>
+          <builder.input name="input" />
+          <builder.textarea name="textarea" />
+          <builder.select name="select">
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("can derive name for a collection as well using fields builder", function() {
+    act(function() {
+      render(
+        <builder.form name="test">
+          <builder.fields name="fields" collection>
+            <builder.input name="input" />
+            <builder.textarea name="textarea" />
+            <builder.select name="select">
+              <option value="test-value-one">Test option one</option>
+              <option value="test-value-two">Test option two</option>
+              <option value="test-value-any">Test option any</option>
+            </builder.select>
+          </builder.fields>
+        </builder.form>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it.only("can derive name for a collection for individual fields", function() {
+    act(function() {
+      render(
+        <builder.fields name="fields" formName="test">
+          <builder.input name="input" collection/>
+          <builder.textarea name="textarea" collection/>
+          <builder.select name="select" collection>
+            <option value="test-value-one">Test option one</option>
+            <option value="test-value-two">Test option two</option>
+            <option value="test-value-any">Test option any</option>
+          </builder.select>
+        </builder.fields>, container
+      );
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
 });

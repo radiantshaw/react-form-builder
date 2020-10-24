@@ -4,20 +4,31 @@ import deriveName from "../utils/derive-name";
 
 const FormBuilderContext = React.createContext();
 
-function useDerivedName(name) {
+function useDerivedName(name, collection) {
   if (!name) return null;
 
-  return deriveName([
+  const formContext = [
     ...useContext(FormBuilderContext), name
-  ]);
+  ];
+
+  if (collection) {
+    formContext.push('');
+  }
+
+  return deriveName(formContext);
 }
 
 let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
+  let formContext = [props.name];
+  if (props.collection) {
+    formContext.push('');
+  }
+
   return (
-    <form ref={ref} { ...props } name={null}>
-      <FormBuilderContext.Provider value={[props.name]}>
+    <form ref={ref} { ...props } name={null} collection={null}>
+      <FormBuilderContext.Provider value={formContext}>
         { props.children }
       </FormBuilderContext.Provider>
     </form>
@@ -27,9 +38,11 @@ builder.form = forwardRef(function(props, ref) {
 builder.fields = function(props) {
   if (props.name) {
     var formContext =
-      props.formName ? [props.formName] : useContext(FormBuilderContext);
+      props.formName
+        ? [props.formName]
+        : useContext(FormBuilderContext) || [];
 
-    if (typeof formContext == "undefined") {
+    if (formContext.length == 0) {
       throw new Error(
         "No form context specified. Either, wrap your `builder.fields' call inside " +
         "a `builder.form' call and pass the `name' prop to the `builder.form' call, " +
@@ -42,9 +55,15 @@ builder.fields = function(props) {
     return props.children || null;
   }
 
+  formContext.push(props.name);
+
+  if (props.collection) {
+    formContext.push('');
+  }
+
   return (
     <FormBuilderContext.Provider
-      value={[...formContext, props.name]}>
+      value={formContext}>
       { props.children }
     </FormBuilderContext.Provider>
   );
@@ -52,16 +71,16 @@ builder.fields = function(props) {
 
 builder.input = forwardRef(function(props, ref) {
   return (
-    <input ref={ref} { ...props }
-      name={useDerivedName(props.name)}
+    <input ref={ref} { ...props } collection={null}
+      name={useDerivedName(props.name, props.collection)}
     />
   );
 });
 
 builder.select = forwardRef(function(props, ref) {
   return (
-    <select ref={ref} { ...props }
-      name={useDerivedName(props.name)}>
+    <select ref={ref} { ...props } collection={null}
+      name={useDerivedName(props.name, props.collection)}>
       { props.children }
     </select>
   );
@@ -69,8 +88,8 @@ builder.select = forwardRef(function(props, ref) {
 
 builder.textarea = forwardRef(function(props, ref) {
   return (
-    <textarea ref={ref} { ...props }
-      name={useDerivedName(props.name)}
+    <textarea ref={ref} { ...props } collection={null}
+      name={useDerivedName(props.name, props.collection)}
     />
   );
 });
