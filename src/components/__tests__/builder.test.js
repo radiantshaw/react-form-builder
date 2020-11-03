@@ -583,4 +583,28 @@ describe("form builder", function() {
 
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
+
+  it("renders input element as it is if builder context is not found", function() {
+    act(function() {
+      render(<builder.input name="input" />, container);
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("renders select element as it is if builder context is not found", function() {
+    act(function() {
+      render(<builder.select name="select"></builder.select>, container);
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
+
+  it("renders textarea element as it is if builder context is not found", function() {
+    act(function() {
+      render(<builder.textarea name="textarea" />, container);
+    });
+
+    expect(pretty(container.innerHTML)).toMatchSnapshot();
+  });
 });

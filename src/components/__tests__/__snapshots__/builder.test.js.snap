@@ -52,6 +52,12 @@ exports[`form builder can set the derived name for form inputs without a root fo
 </select>"
 `;
 
+exports[`form builder renders input element as it is if builder context is not found 1`] = `"<input name=\\"input\\">"`;
+
+exports[`form builder renders select element as it is if builder context is not found 1`] = `"<select name=\\"select\\"></select>"`;
+
+exports[`form builder renders textarea element as it is if builder context is not found 1`] = `"<textarea name=\\"textarea\\"></textarea>"`;
+
 exports[`form builder sets the derived name for form inputs 1`] = `
 "<form><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
     <option value=\\"test-value-one\\">Test option one</option>

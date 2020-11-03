@@ -5,6 +5,10 @@ import deriveName from "../utils/derive-name";
 const FormBuilderContext = React.createContext();
 
 function useDerivedName(name, collection) {
+  if (typeof useContext(FormBuilderContext) === "undefined") {
+    return name;
+  }
+
   if (!name) return null;
 
   const formContext = [
