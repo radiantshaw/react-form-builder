@@ -37,10 +37,13 @@ builder.form = forwardRef(function(props, ref) {
 
 builder.fields = function(props) {
   if (props.name) {
-    var formContext =
-      props.formName
-        ? [props.formName]
-        : useContext(FormBuilderContext) || [];
+    if (props.formName) {
+      var formContext = [props.formName];
+    } else if (typeof useContext(FormBuilderContext) !== "undefined") {
+      var formContext = [...useContext(FormBuilderContext)];
+    } else {
+      var formContext = [];
+    }
 
     if (formContext.length == 0) {
       throw new Error(

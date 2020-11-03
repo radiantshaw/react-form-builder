@@ -566,7 +566,7 @@ describe("form builder", function() {
     expect(pretty(container.innerHTML)).toMatchSnapshot();
   });
 
-  it.only("can derive name for a collection for individual fields", function() {
+  it("can derive name for a collection for individual fields", function() {
     act(function() {
       render(
         <builder.fields name="fields" formName="test">
