@@ -13,7 +13,10 @@
   ],
   "author": "Nipun Paradkar",
   "license": "ISC",
-  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
