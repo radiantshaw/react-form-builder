@@ -4,7 +4,7 @@
   "description": "A form builder for React, inspired by Rails.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "form",
@@ -14,10 +14,14 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
+    "babel-loader": "^8.2.2",
     "jest": "^26.6.0",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0"
   }
 }
