@@ -25,13 +25,13 @@ function useDerivedName(name, collection) {
 let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
-  let formContext = [props.name];
+  let formContext = [props.resource];
   if (props.collection) {
     formContext.push('');
   }
 
   return (
-    <form ref={ref} { ...props } name={null} collection={null}>
+    <form ref={ref} { ...props } resource={null} collection={null}>
       <FormBuilderContext.Provider value={formContext}>
         { props.children }
       </FormBuilderContext.Provider>
@@ -41,8 +41,8 @@ builder.form = forwardRef(function(props, ref) {
 
 builder.fields = function(props) {
   if (props.name) {
-    if (props.formName) {
-      var formContext = [props.formName];
+    if (props.resource) {
+      var formContext = [props.resource];
     } else if (typeof useContext(FormBuilderContext) !== "undefined") {
       var formContext = [...useContext(FormBuilderContext)];
     } else {
@@ -55,7 +55,7 @@ builder.fields = function(props) {
         "a `builder.form' call and pass the `name' prop to the `builder.form' call, " +
         "or if you don't want to render the `form' element for some reason (maybe " +
         "the `form' was already rendered from the server), then simply pass the " +
-        "`formName' prop to the `builder.fields' call by itself."
+        "`resource' prop to the `builder.fields' call by itself."
       );
     }
   } else {

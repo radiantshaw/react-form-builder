@@ -375,7 +375,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <builder.input name="input" />
           <builder.textarea name="textarea" />
           <builder.select name="select">
@@ -393,7 +393,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs nested one level deep", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <div>
             <builder.input name="input" />
             <builder.textarea name="textarea" />
@@ -413,7 +413,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs nested several levels deep", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <div>
             <div>
               <div>
@@ -437,7 +437,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs using fields builder", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <builder.fields name="fields">
             <builder.input name="input" />
             <builder.textarea name="textarea" />
@@ -457,7 +457,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs using proper nested context", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <builder.input name="pre-outer-input" />
           <builder.textarea name="pre-outer-textarea" />
           <builder.select name="pre-outer-select">
@@ -491,7 +491,7 @@ describe("form builder", function() {
   it("sets the derived name for form inputs with nested fields", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <builder.fields name="outer-fields">
             <builder.fields name="inner-fields">
               <builder.input name="input" />
@@ -513,7 +513,7 @@ describe("form builder", function() {
   it("can set the derived name for form inputs without a root form", function() {
     act(function() {
       render(
-        <builder.fields name="fields" formName="test">
+        <builder.fields name="fields" resource="test">
           <builder.input name="input" />
           <builder.textarea name="textarea" />
           <builder.select name="select">
@@ -531,7 +531,7 @@ describe("form builder", function() {
   it("can derive name for a collection as well for the root form", function() {
     act(function() {
       render(
-        <builder.form name="test" collection>
+        <builder.form resource="test" collection>
           <builder.input name="input" />
           <builder.textarea name="textarea" />
           <builder.select name="select">
@@ -549,7 +549,7 @@ describe("form builder", function() {
   it("can derive name for a collection as well using fields builder", function() {
     act(function() {
       render(
-        <builder.form name="test">
+        <builder.form resource="test">
           <builder.fields name="fields" collection>
             <builder.input name="input" />
             <builder.textarea name="textarea" />
@@ -569,7 +569,7 @@ describe("form builder", function() {
   it("can derive name for a collection for individual fields", function() {
     act(function() {
       render(
-        <builder.fields name="fields" formName="test">
+        <builder.fields name="fields" resource="test">
           <builder.input name="input" collection/>
           <builder.textarea name="textarea" collection/>
           <builder.select name="select" collection>
