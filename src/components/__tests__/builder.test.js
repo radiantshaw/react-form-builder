@@ -47,6 +47,7 @@ describe("builder.form()", function() {
       draggable: "false",
       id: "test-id",
       lang: "en-GB",
+      name: "test-form",
       spellCheck: "false",
       tabIndex: '0',
       title: "Test title",
