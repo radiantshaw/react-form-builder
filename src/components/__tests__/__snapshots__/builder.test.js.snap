@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`builder.fields() renders the children directly 1`] = `
+"<div>Test immediate children</div>
+<div><span>Test inner children</span></div>"
+`;
+
+exports[`builder.form() renders the children between the opening and closing form tags 1`] = `
+"<form>
+  <div>Test immediate children</div>
+  <div><span>Test inner children</span></div>
+</form>"
+`;
+
+exports[`builder.select() renders the children between the opening and closing select tags 1`] = `
+"<select>
+  <option value=\\"test-value-one\\">Test option one</option>
+  <option value=\\"test-value-two\\">Test option two</option>
+  <option value=\\"test-value-any\\">Test option any</option>
+</select>"
+`;
+
+exports[`form builder can derive name for a collection as well for the root form 1`] = `
+"<form><input name=\\"test[][input]\\"><textarea name=\\"test[][textarea]\\"></textarea><select name=\\"test[][select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
+
+exports[`form builder can derive name for a collection as well using fields builder 1`] = `
+"<form><input name=\\"test[fields][][input]\\"><textarea name=\\"test[fields][][textarea]\\"></textarea><select name=\\"test[fields][][select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
+
+exports[`form builder can derive name for a collection for individual fields 1`] = `
+"<input name=\\"test[fields][input][]\\"><textarea name=\\"test[fields][textarea][]\\"></textarea><select name=\\"test[fields][select][]\\">
+  <option value=\\"test-value-one\\">Test option one</option>
+  <option value=\\"test-value-two\\">Test option two</option>
+  <option value=\\"test-value-any\\">Test option any</option>
+</select>"
+`;
+
+exports[`form builder can set the derived name for form inputs without a root form 1`] = `
+"<input name=\\"test[fields][input]\\"><textarea name=\\"test[fields][textarea]\\"></textarea><select name=\\"test[fields][select]\\">
+  <option value=\\"test-value-one\\">Test option one</option>
+  <option value=\\"test-value-two\\">Test option two</option>
+  <option value=\\"test-value-any\\">Test option any</option>
+</select>"
+`;
+
+exports[`form builder renders input element as it is if builder context is not found 1`] = `"<input name=\\"input\\">"`;
+
+exports[`form builder renders select element as it is if builder context is not found 1`] = `"<select name=\\"select\\"></select>"`;
+
+exports[`form builder renders textarea element as it is if builder context is not found 1`] = `"<textarea name=\\"textarea\\"></textarea>"`;
+
+exports[`form builder sets the derived name for form inputs 1`] = `
+"<form><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
+
+exports[`form builder sets the derived name for form inputs nested one level deep 1`] = `
+"<form>
+  <div><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+      <option value=\\"test-value-one\\">Test option one</option>
+      <option value=\\"test-value-two\\">Test option two</option>
+      <option value=\\"test-value-any\\">Test option any</option>
+    </select></div>
+</form>"
+`;
+
+exports[`form builder sets the derived name for form inputs nested several levels deep 1`] = `
+"<form>
+  <div>
+    <div>
+      <div><input name=\\"test[input]\\"><textarea name=\\"test[textarea]\\"></textarea><select name=\\"test[select]\\">
+          <option value=\\"test-value-one\\">Test option one</option>
+          <option value=\\"test-value-two\\">Test option two</option>
+          <option value=\\"test-value-any\\">Test option any</option>
+        </select></div>
+    </div>
+  </div>
+</form>"
+`;
+
+exports[`form builder sets the derived name for form inputs using fields builder 1`] = `
+"<form><input name=\\"test[fields][input]\\"><textarea name=\\"test[fields][textarea]\\"></textarea><select name=\\"test[fields][select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
+
+exports[`form builder sets the derived name for form inputs using proper nested context 1`] = `
+"<form><input name=\\"test[pre-outer-input]\\"><textarea name=\\"test[pre-outer-textarea]\\"></textarea><select name=\\"test[pre-outer-select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select><input name=\\"test[fields][inner-input]\\"><textarea name=\\"test[fields][inner-textarea]\\"></textarea><select name=\\"test[fields][inner-select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select><input name=\\"test[post-outer-input]\\"><textarea name=\\"test[post-outer-textarea]\\"></textarea><select name=\\"test[post-outer-select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;
+
+exports[`form builder sets the derived name for form inputs with nested fields 1`] = `
+"<form><input name=\\"test[outer-fields][inner-fields][input]\\"><textarea name=\\"test[outer-fields][inner-fields][textarea]\\"></textarea><select name=\\"test[outer-fields][inner-fields][select]\\">
+    <option value=\\"test-value-one\\">Test option one</option>
+    <option value=\\"test-value-two\\">Test option two</option>
+    <option value=\\"test-value-any\\">Test option any</option>
+  </select></form>"
+`;

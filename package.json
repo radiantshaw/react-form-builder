@@ -4,7 +4,8 @@
   "description": "A form builder for React, inspired by Rails.",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir dist"
+    "test": "jest --watchAll",
+    "build": "./node_modules/.bin/babel src --out-dir dist --ignore **/__tests__/**"
   },
   "keywords": [
     "form",
@@ -12,13 +13,17 @@
   ],
   "author": "Nipun Paradkar",
   "license": "ISC",
-  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "jest": "^26.6.0",
+    "pretty": "^2.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }

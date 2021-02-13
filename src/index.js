@@ -1,1 +1,1 @@
-export default function() { console.log("Hello Babel"); }
+export { default } from './components/builder';
