@@ -1,6 +1,6 @@
 {
-  "name": "react-form-builder",
-  "version": "1.0.0",
+  "name": "@unobtrusive/react-form-builder",
+  "version": "0.1.0-alpha.1",
   "description": "A form builder for React, inspired by Rails.",
   "main": "index.js",
   "scripts": {
