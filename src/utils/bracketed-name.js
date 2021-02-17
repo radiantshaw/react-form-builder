@@ -14,4 +14,8 @@ BracketedName.prototype.toString = function() {
   return this.attributeName;
 }
 
+BracketedName.prototype.clone = function() {
+  return new BracketedName(this.attributeName);
+}
+
 export default BracketedName;

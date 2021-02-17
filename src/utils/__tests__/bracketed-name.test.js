@@ -54,4 +54,14 @@ describe("BracketedName", function() {
       expect(bracketedName.toString()).toEqual("first[second][][third][][]");
     });
   });
+
+  describe("clone()", function() {
+    it("gives a cloned object of the original one", function() {
+      let bracketedName = new BracketedName("first");
+      let clonedBracketedName = bracketedName.clone();
+
+      expect(clonedBracketedName).toBeInstanceOf(BracketedName);
+      expect(clonedBracketedName).not.toBe(bracketedName);
+    });
+  });
 });
