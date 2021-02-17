@@ -1,6 +1,7 @@
 import React, { forwardRef, useContext } from "react";
 
 import deriveName from "../utils/derive-name";
+import BracketedName from "../utils/bracketed-name";
 
 const FormBuilderContext = React.createContext();
 
@@ -25,14 +26,14 @@ function useDerivedName(name, collection) {
 let builder = {};
 
 builder.form = forwardRef(function(props, ref) {
-  let formContext = [props.resource];
+  let bracketedName = new BracketedName(props.resource);
   if (props.collection) {
-    formContext.push('');
+    bracketedName.collected();
   }
 
   return (
     <form ref={ref} { ...props } resource={null} collection={null}>
-      <FormBuilderContext.Provider value={formContext}>
+      <FormBuilderContext.Provider value={bracketedName}>
         { props.children }
       </FormBuilderContext.Provider>
     </form>
@@ -42,14 +43,14 @@ builder.form = forwardRef(function(props, ref) {
 builder.fields = function(props) {
   if (props.name) {
     if (props.resource) {
-      var formContext = [props.resource];
+      var bracketedName = new BracketedName(props.resource);
     } else if (typeof useContext(FormBuilderContext) !== "undefined") {
-      var formContext = [...useContext(FormBuilderContext)];
+      var bracketedName = useContext(FormBuilderContext).clone();
     } else {
-      var formContext = [];
+      var bracketedName = null;
     }
 
-    if (formContext.length == 0) {
+    if (!bracketedName) {
       throw new Error(
         "No form context specified. Either, wrap your `builder.fields' call inside " +
         "a `builder.form' call and pass the `name' prop to the `builder.form' call, " +
@@ -62,41 +63,80 @@ builder.fields = function(props) {
     return props.children || null;
   }
 
-  formContext.push(props.name);
+  bracketedName.add(props.name);
 
   if (props.collection) {
-    formContext.push('');
+    bracketedName.collected();
   }
 
   return (
     <FormBuilderContext.Provider
-      value={formContext}>
+      value={bracketedName}>
       { props.children }
     </FormBuilderContext.Provider>
   );
 }
 
 builder.input = forwardRef(function(props, ref) {
+  let bracketedName = useContext(FormBuilderContext);
+
+  if (bracketedName) {
+    bracketedName = bracketedName.clone();
+    bracketedName.add(props.name);
+  } else {
+    bracketedName = new BracketedName(props.name);
+  }
+
+  if (props.collection) {
+    bracketedName.collected();
+  }
+
   return (
     <input ref={ref} { ...props } collection={null}
-      name={useDerivedName(props.name, props.collection)}
+      name={bracketedName.toString()}
     />
   );
 });
 
 builder.select = forwardRef(function(props, ref) {
+  let bracketedName = useContext(FormBuilderContext);
+
+  if (bracketedName) {
+    bracketedName = bracketedName.clone();
+    bracketedName.add(props.name);
+  } else {
+    bracketedName = new BracketedName(props.name);
+  }
+
+  if (props.collection) {
+    bracketedName.collected();
+  }
+
   return (
     <select ref={ref} { ...props } collection={null}
-      name={useDerivedName(props.name, props.collection)}>
+      name={bracketedName.toString()}>
       { props.children }
     </select>
   );
 });
 
 builder.textarea = forwardRef(function(props, ref) {
+  let bracketedName = useContext(FormBuilderContext);
+
+  if (bracketedName) {
+    bracketedName = bracketedName.clone();
+    bracketedName.add(props.name);
+  } else {
+    bracketedName = new BracketedName(props.name);
+  }
+
+  if (props.collection) {
+    bracketedName.collected();
+  }
+
   return (
     <textarea ref={ref} { ...props } collection={null}
-      name={useDerivedName(props.name, props.collection)}
+      name={bracketedName.toString()}
     />
   );
 });
