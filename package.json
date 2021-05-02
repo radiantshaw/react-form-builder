@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
-    "build": "./node_modules/.bin/babel src --out-dir dist --ignore **/__tests__/**"
+    "build": "./node_modules/.bin/babel src --out-dir dist --extensions \".es6,.js,.ts,.es,.jsx,.tsx,.mjs\" --ignore **/__tests__/**"
   },
   "keywords": [
     "form",
