@@ -59,6 +59,11 @@ Now I know that the form goes from a nice flat structure to a nested one, but th
 ```sh
 $ npm install @unobtrusive/react-form-builder
 ```
+### Or via Yarn
+
+```sh
+$ yarn add @unobtrusive/react-form-builder
+```
 
 ## Features
 
