@@ -21,7 +21,7 @@ Don't worry if you don't understand Rails; the point is that the convention of s
 
 Wouldn't it be nice to not care about whether or not you've properly put those square brackets and everything is working properly because of it?
 
-Using the `react-form-builder` package, the above form can be re-written like such:
+Using the `@unobtrusive/react-form-builder` package, the above form can be re-written like such:
 
 ```jsx
 <builder.form action="/users" method="post" resource="user">
@@ -78,7 +78,7 @@ There are 5 components provided by this package:
 All of the above are namespaced inside the `builder` object. So the usage would look like:
 
 ```jsx
-import builder from "react-form-builder";
+import builder from "@unobtrusive/react-form-builder";
 
 <builder.form {/* ... */}>
   <builder.input {/* ... */} />
