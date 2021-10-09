@@ -57,7 +57,7 @@ Now I know that the form goes from a nice flat structure to a nested one, but th
 ### Via NPM
 
 ```sh
-$ npm install --save @unobtrusive/react-form-builder
+$ npm install @unobtrusive/react-form-builder
 ```
 
 ## Features
