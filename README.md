@@ -1,4 +1,6 @@
-Several server side frameworks are designed to handle form data if the inputs are named in a certain way. For e.g., in Rails, if you have an input named `user[name]`, and is submitted as a part of a form, then the server would parse and convert it to a `Hash` as such: `{ "user" => { "name" => <value> } }`. This allows the server program to access the input value as: `params["user"]["name"]`, where `params` is the variable through which the parsed `Hash` is accessible.
+# React Form Builder
+
+Several server side frameworks are designed to handle form data if the inputs are named in a certain way. For e.g., in Rails, if you have an input named `user[name]`, and is submitted as part of a form, then the server would parse and convert it to a `Hash` as such: `{ "user" => { "name" => <value> } }`. This allows the server to access the input value as: `params["user"]["name"]`, where `params` is the variable through which the parsed `Hash` is accessible.
 
 Don't worry if you don't understand Rails; the point is that the convention of square brackets inside an input's name allows the server to store the value in a nice data structure which is then easier to work with. The only problem is that it can get cumbersome to write such form with inputs having these square brackets in their name, especially if it's a very complex form:
 
@@ -21,7 +23,7 @@ Don't worry if you don't understand Rails; the point is that the convention of s
 
 Wouldn't it be nice to not care about whether or not you've properly put those square brackets and everything is working properly because of it?
 
-Using the `react-form-builder` package, the above form can be re-written like such:
+Using the `@unobtrusive/react-form-builder` package, the above form can be re-written like such:
 
 ```jsx
 <builder.form action="/users" method="post" resource="user">
@@ -50,14 +52,19 @@ Using the `react-form-builder` package, the above form can be re-written like su
 </builder.form>
 ```
 
-Now I know that the form goes from a nice flat structure to a nested one, but those extra lines of code will make sure that the form, when submitted, will be compatible with the server. Also, it's a lot better to read as it follows a visual grouping of what inputs belong together.
+Now the form goes from a nice flat structure to a nested one, but those extra lines of code will make sure that the form, when submitted, will be compatible with the server. Also, it's a lot better to read as it follows a visual grouping of what inputs belong together.
 
 ## Installation
 
 ### Via NPM
 
 ```sh
-$ npm install --save @unobtrusive/react-form-builder
+$ npm install @unobtrusive/react-form-builder
+```
+### Or via Yarn
+
+```sh
+$ yarn add @unobtrusive/react-form-builder
 ```
 
 ## Features
@@ -70,10 +77,10 @@ There are 5 components provided by this package:
 - `select`
 - `textarea`
 
-All of the above are namespaced inside the `builder` object. So the usage would look like:
+all namespaced inside the `builder` object. So the usage would look like:
 
 ```jsx
-import builder from "react-form-builder";
+import builder from "@unobtrusive/react-form-builder";
 
 <builder.form {/* ... */}>
   <builder.input {/* ... */} />
@@ -81,11 +88,11 @@ import builder from "react-form-builder";
 </builder.form>
 ```
 
-All the components mentioned above are just thin wrappers on the original components. You can pass some special props to these in order for them to work. The rest of the props (including the children) are just forwarded unchanged to the original component.
+All the components mentioned above are just thin wrappers on the original components. You just need to pass some special props to these in order for them to work. The rest of the props (including the children) are just forwarded unchanged to the original component.
 
 Also note that even the ref passed to these components will be forwarded to the original components, which is also the reason why these are very thin wrappers.
 
-### `form`
+### `form` component
 
 #### Custom props
 
@@ -107,7 +114,7 @@ Also note that even the ref passed to these components will be forwarded to the 
 
 Except for `resource`, every other prop is forwarded to the original component. The `resource` prop is internally used by the component to set up things which will then be used by the other components in the list.
 
-### `input`
+### `input` component
 
 #### Custom props
 
@@ -148,7 +155,7 @@ If inputs are part of a collection:
 </form>
 ```
 
-### `fields`
+### `fields` component
 
 Doesn't render any component. It is used to create a nested structure for more complex form.
 
@@ -278,10 +285,10 @@ For grouped collection:
 </form>
 ```
 
-### `textarea`
+### `textarea` component
 
 Same as `input`.
 
-### `select`
+### `select` component
 
 Same as `input`. For rendering `option`, you can use the usual component.
