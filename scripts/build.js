@@ -27,13 +27,10 @@ const es6Config = Object.assign({}, {
   outfile: 'dist/react-form-builder.mjs'
 }, defaultConfig);
 
-const browserConfig = Object.assign({}, {
-  platform: 'browser',
-  outfile: 'dist/react-form-builder.js',
-  inject: ['./src/shims/browser.js']
-}, defaultConfig);
-
-[commonJSConfig, es6Config, browserConfig].forEach(function(config) {
+[
+  commonJSConfig,
+  es6Config
+].forEach(function(config) {
   esbuild.build(config).catch(function() {
     process.exit(1);
   });
